@@ -79,11 +79,8 @@ export default function Navbar() {
             >
               {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
             </Button>
-            <Button size={"md"} colorScheme={"none"}>
-              <ImCart
-                size={["0rem", "0rem", "2rem"]}
-                color={colorMode === "light" ? "black" : "white"}
-              />
+            <Button colorScheme={"none"} size={["lg", "2xl"]} px={5}>
+              <ImCart color={colorMode === "light" ? "black" : "white"} />
             </Button>
             <Button
               variant={"solid"}
