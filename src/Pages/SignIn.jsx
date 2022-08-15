@@ -5,7 +5,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-// import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -14,7 +13,9 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserDataApi } from "../Redux/AuthReducer/auth.actions";
-import axios from "axios";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
+import { BsGithub } from "react-icons/bs";
 
 function Copyright(props) {
   return (
@@ -33,7 +34,7 @@ function Copyright(props) {
     </Typography>
   );
 }
-import { Center, CircularProgress } from "@chakra-ui/react";
+import { Center, CircularProgress, Stack, Text, Button as ChButton } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { removeItem, setItem } from "../Utils/localStorage";
 const theme = createTheme();
@@ -154,6 +155,28 @@ export default function SignIn() {
             >
               Sign In
             </Button>
+            <Center p={8}>
+              <Stack spacing={2} align={"center"} maxW={"md"} w={"full"}>
+                {/* Facebook */}
+                <ChButton
+                  w={"full"}
+                  colorScheme={"facebook"}
+                  leftIcon={<BsGithub />}
+                  variant={"solid"}
+                >
+                  <Center>
+                    <Text>Continue with Github</Text>
+                  </Center>
+                </ChButton>
+                <br />
+                <ChButton w={"full"} variant={"solid"} leftIcon={<FcGoogle />}>
+                  <Center>
+                    <Text>Sign in with Google</Text>
+                  </Center>
+                </ChButton>
+              </Stack>
+            </Center>
+            <br />
             <Grid container>
               <Grid item xs>
                 <Link to={"/signin"} variant="body2">
