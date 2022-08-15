@@ -5,7 +5,8 @@ import Kids from "./Pages/Kids";
 import Mens from "./Pages/Mens";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/Signup";
-import Womens from "./Pages/Womens";  
+import Womens from "./Pages/Womens";
+import "./App.css";
 
 function App() {
   return (
