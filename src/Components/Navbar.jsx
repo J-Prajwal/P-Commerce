@@ -13,11 +13,16 @@ import {
   useColorMode,
   Input,
   InputLeftElement,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, SearchIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { ImCart } from "react-icons/im";
+import { getItem, removeItem } from "../Utils/localStorage";
 
 const Links = ["Mens", "Womens", "Kids"];
 
@@ -38,7 +43,12 @@ const NavLink = ({ children }) => (
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const navigate = useNavigate();
+  const user = getItem("user");
+  const logoutHandler = () => {
+    removeItem("user");
+    navigate("/");
+  };
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -52,7 +62,9 @@ export default function Navbar() {
           />
           <HStack spacing={8} alignItems={"center"}>
             <Box>
-              <Heading size={"md"}>P-Comm</Heading>
+              <Link to={"/"}>
+                <Heading size={"md"}>P-Comm</Heading>
+              </Link>
             </Box>
             <HStack
               as={"nav"}
@@ -82,15 +94,41 @@ export default function Navbar() {
             <Button colorScheme={"none"} size={["lg", "2xl"]} px={5}>
               <ImCart color={colorMode === "light" ? "black" : "white"} />
             </Button>
-            <Button
-              variant={"solid"}
-              colorScheme={"blue"}
-              size={"sm"}
-              px={5}
-              onClick={onOpen}
-            >
-              New Here?
-            </Button>
+
+            {user != undefined ? (
+              <Menu>
+                {({ isOpen }) => (
+                  <div>
+                    <MenuButton
+                      isActive={isOpen}
+                      as={Button}
+                      variant={"solid"}
+                      colorScheme={"blue"}
+                      size={"sm"}
+                      px={5}
+                    >
+                      {user.username}
+                    </MenuButton>
+                    <MenuList>
+                      <MenuItem>User Profile</MenuItem>
+                      <MenuItem onClick={() => logoutHandler()}>
+                        Logout
+                      </MenuItem>
+                    </MenuList>
+                  </div>
+                )}
+              </Menu>
+            ) : (
+              <Button
+                variant={"solid"}
+                colorScheme={"blue"}
+                size={"sm"}
+                px={5}
+                onClick={onOpen}
+              >
+                <Link to={"/signin"}>New Here?</Link>
+              </Button>
+            )}
           </Flex>
         </Flex>
 
