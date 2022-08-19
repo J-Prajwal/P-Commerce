@@ -12,3 +12,8 @@ export const getUserDataApi = () => (dispatch) => {
       dispatch({ type: types.GET_USERDATA_FAILURE });
     });
 };
+
+
+export const logoutUserApi = () => (dispatch) => {
+  // dispatch({type: types})
+}

@@ -1,9 +1,11 @@
+import { getItem } from "../../Utils/localStorage";
 import * as types from "./auth.actionTypes";
 
 const initialState = {
+  username: getItem("user"),
   userData: [],
-  token: "",
-  isAuth: false,
+  token: getItem("token") || "",
+  isAuth: getItem("token") ? true : false,
   isLoading: false,
   isError: false,
 };
@@ -20,7 +22,9 @@ export const reducer = (state = initialState, { type, payload }) => {
     case types.GET_USERDATA_SUCCESS: {
       return {
         ...state,
+        username: payload,
         userData: payload,
+        token: payload,
         isLoading: false,
         isError: false,
       };

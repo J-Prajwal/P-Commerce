@@ -47,6 +47,7 @@ export default function Navbar() {
   const user = getItem("user");
   const logoutHandler = () => {
     removeItem("user");
+    removeItem("token");
     navigate("/");
   };
   return (
@@ -107,7 +108,7 @@ export default function Navbar() {
                       size={"sm"}
                       px={5}
                     >
-                      {user.username}
+                      {user}
                     </MenuButton>
                     <MenuList>
                       <MenuItem>User Profile</MenuItem>

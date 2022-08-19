@@ -1,9 +1,16 @@
-import React from 'react'
+import { Heading } from "@chakra-ui/react";
+import React from "react";
+import Footer from "../Components/Footer";
+import Navbar from "../Components/Navbar";
 
 const Kids = () => {
   return (
-    <div>Kids</div>
-  )
-}
+    <div>
+      <Navbar />
+      <Heading>Kids</Heading>
+      <Footer />
+    </div>
+  );
+};
 
-export default Kids
+export default Kids;

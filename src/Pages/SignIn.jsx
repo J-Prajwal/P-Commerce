@@ -34,7 +34,13 @@ function Copyright(props) {
     </Typography>
   );
 }
-import { Center, CircularProgress, Stack, Text, Button as ChButton } from "@chakra-ui/react";
+import {
+  Center,
+  CircularProgress,
+  Stack,
+  Text,
+  Button as ChButton,
+} from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { removeItem, setItem } from "../Utils/localStorage";
 const theme = createTheme();
@@ -68,12 +74,13 @@ export default function SignIn() {
         res = elem.email == info.email && elem.password == info.password;
         if (res) {
           const token = generateToken();
-          const payload = { username: elem.username, token: token };
-          setItem("user", payload);
-          console.log(token);
+          setItem("user", elem.username);
+          setItem("token", token);
+          console.log(elem.username, token);
           return res;
         } else {
           removeItem("user");
+          removeItem("token");
         }
       });
       return res;
