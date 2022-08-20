@@ -127,7 +127,7 @@ export default function Navbar() {
                 px={5}
                 onClick={onOpen}
               >
-                <Link to={"/signin"}>New Here?</Link>
+                <Link to={"/signup"}>New Here?</Link>
               </Button>
             )}
           </Flex>

@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { RequiredAuth } from "../Hoc/RequiredAuth";
+// import { RequiredAuth } from "../Hoc/RequiredAuth";
 import Details from "./Details";
 import Home from "./Home";
 import Kids from "./Kids";
 import Mens from "./Mens";
 import SignIn from "./SignIn";
-import SignUp from "./Signup";
+import SignUp from "./SignUp";
 import Womens from "./Womens";
 
 const MainRoutes = () => {

@@ -6,7 +6,6 @@ import {
   Image,
   SimpleGrid,
 } from "@chakra-ui/react";
-import { blue } from "@mui/material/colors";
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
