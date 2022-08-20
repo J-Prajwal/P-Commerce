@@ -12,7 +12,6 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  Link,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -20,6 +19,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../Redux/AuthReducer/auth.actions";
 import { useToast } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
   const dispatch = useDispatch();
@@ -152,7 +152,7 @@ export default function SignUp() {
               </Stack>
               <Stack pt={6}>
                 <Text align={"center"}>
-                  Already a user? <Link color={"blue.400"}>Login</Link>
+                  Already a user? <Link to={"/signin"}> <span style={{color: "#4299e1"}}>Login</span> </Link>
                 </Text>
               </Stack>
             </Stack>

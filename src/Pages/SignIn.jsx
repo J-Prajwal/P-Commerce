@@ -12,8 +12,23 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../Redux/AuthReducer/auth.actions";
 
 export default function SignIn() {
+  const { isLoading } = useSelector((state) => state.authReducer);
+  const dispatch = useDispatch();
+  const [creds, setCreds] = useState({ email: "", password: "" });
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setCreds((values) => ({ ...values, [name]: value }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loginUser(creds));
+  };
   return (
     <Flex
       minH={"100vh"}
@@ -34,35 +49,61 @@ export default function SignIn() {
           boxShadow={"lg"}
           p={8}
         >
-          <Stack spacing={4}>
-            <FormControl id="email">
-              <FormLabel>Email address</FormLabel>
-              <Input type="email" placeholder="Enter email"/>
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>Password</FormLabel>
-              <Input type="password" />
-            </FormControl>
-            <Stack spacing={10}>
-              <Stack
-                direction={{ base: "column", sm: "row" }}
-                align={"start"}
-                justify={"space-between"}
-              >
-                <Checkbox>Remember me</Checkbox>
-                <Link color={"blue.400"}>Forgot password?</Link>
+          <form method="post" onSubmit={handleSubmit}>
+            <Stack spacing={4}>
+              <FormControl id="email">
+                <FormLabel>Email address</FormLabel>
+                <Input
+                  type="email"
+                  name="email"
+                  onChange={handleChange}
+                  placeholder="Enter email"
+                />
+              </FormControl>
+              <FormControl id="password">
+                <FormLabel>Password</FormLabel>
+                <Input
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                  placeholder="Enter Password"
+                />
+              </FormControl>
+              <Stack spacing={10}>
+                <Stack
+                  direction={{ base: "column", sm: "row" }}
+                  align={"start"}
+                  justify={"space-between"}
+                >
+                  <Checkbox>Remember me</Checkbox>
+                  <Link color={"blue.400"}>Forgot password?</Link>
+                </Stack>
+
+                {isLoading ? (
+                  <Button
+                    bg={"blue.400"}
+                    color={"white"}
+                    _hover={{
+                      bg: "blue.500",
+                    }}
+                    isLoading
+                  >
+                  </Button>
+                ) : (
+                  <Button
+                    bg={"blue.400"}
+                    color={"white"}
+                    _hover={{
+                      bg: "blue.500",
+                    }}
+                    type="submit"
+                  >
+                    Sign-In
+                  </Button>
+                )}
               </Stack>
-              <Button
-                bg={"blue.400"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
-              >
-                Sign in
-              </Button>
             </Stack>
-          </Stack>
+          </form>
         </Box>
       </Stack>
     </Flex>

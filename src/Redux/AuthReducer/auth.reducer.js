@@ -12,28 +12,31 @@ const initialState = {
 
 export const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case types.GET_USERDATA_REQUEST: {
+    case types.LOGIN_USER_REQUEST: {
       return {
         ...state,
         isLoading: true,
         isError: false,
       };
     }
-    case types.GET_USERDATA_SUCCESS: {
+    case types.LOGIN_USER_SUCCESS: {
       return {
         ...state,
-        username: payload,
-        userData: payload,
-        token: payload,
         isLoading: false,
         isError: false,
       };
     }
-    case types.GET_USERDATA_FAILURE: {
+    case types.LOGIN_USER_FAILURE: {
       return {
         ...state,
         isLoading: false,
         isError: true,
+      };
+    }
+    case types.LOGOUT_USER: {
+      return {
+        ...state,
+        token: "",
       };
     }
     default: {
