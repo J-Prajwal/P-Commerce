@@ -8,7 +8,7 @@ const RequiredAuth = ({ children }) => {
   if (isAuth) {
     return children;
   } else {
-    return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
+    return <Navigate to="/signin" state={{ from: location }} replace></Navigate>;
   }
 };
 

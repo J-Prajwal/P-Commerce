@@ -1,7 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import Cart from "./Cart";
 // import { RequiredAuth } from "../Hoc/RequiredAuth";
 import Details from "./Details";
+import Error from "./error";
 import Home from "./Home";
 import Kids from "./Kids";
 import Mens from "./Mens";
@@ -21,6 +23,8 @@ const MainRoutes = () => {
       <Route path="/Kids/:id" element={<Details />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
+      <Route path="/cart" element={<Cart />}></Route>
+      <Route path="/error" element={<Error />}></Route>
     </Routes>
   );
 };
