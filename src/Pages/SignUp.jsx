@@ -140,9 +140,8 @@ export default function SignUp() {
                   onClick={() =>
                     toast({
                       title: "Account created successfully!",
-                      position: "top",
+                      position: "top-left",
                       status: "success",
-                      variant: "left-accent",
                       duration: 9000,
                       isClosable: true,
                     })
