@@ -1,44 +1,33 @@
-import { getItem } from "../../Utils/localStorage";
-import * as types from "./auth.actionTypes";
+import * as types from "./mens.actionTypes";
 
 const initialState = {
-  username: getItem("username") || false,
-  userData: [],
-  token: getItem("token") || "",
-  isAuth:  false,
+  mens: [],
   isLoading: false,
   isError: false,
-  loginSuccess: false,
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case types.LOGIN_USER_REQUEST: {
+    case types.GET_MENS_PRODUCT_REQUEST: {
       return {
         ...state,
         isLoading: true,
         isError: false,
       };
     }
-    case types.LOGIN_USER_SUCCESS: {
+    case types.GET_MENS_PRODUCT_SUCCESS: {
       return {
         ...state,
-        isAuth: true,
+        mens: payload,
         isLoading: false,
         isError: false,
       };
     }
-    case types.LOGIN_USER_FAILURE: {
+    case types.GET_MENS_PRODUCT_FAILURE: {
       return {
         ...state,
         isLoading: false,
         isError: true,
-      };
-    }
-    case types.LOGOUT_USER: {
-      return {
-        ...state,
-        token: "",
       };
     }
     default: {

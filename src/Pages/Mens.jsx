@@ -2,8 +2,18 @@ import React from "react";
 import CarouselComponent from "../Components/CarouselComponent";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
+import ProductCard from "../Components/ProductCard";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { mensData } from "../Redux/Mens/mens.actions";
 
 const Mens = () => {
+  const mens = useSelector((state) => state.mensReducer);
+  const dispatch = useDispatch;
+  console.log(mens);
+  useEffect(() => {
+    dispatch(mensData());
+  });
   const sliderData = [
     {
       imgUrl:
@@ -25,6 +35,7 @@ const Mens = () => {
     <div>
       <Navbar />
       <CarouselComponent sliderData={sliderData} />
+      <ProductCard />
       <Footer />
     </div>
   );

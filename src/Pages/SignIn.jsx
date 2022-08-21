@@ -11,13 +11,24 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../Redux/AuthReducer/auth.actions";
 
 export default function SignIn() {
-  const { isLoading } = useSelector((state) => state.authReducer);
+  const toast = useToast();
+  const { isLoading, isAuth } = useSelector((state) => state.authReducer);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const comingFrom = location.state?.from?.pathname || "/";
+  console.log(comingFrom);
+  if (isAuth) {
+    navigate(comingFrom, { replace: true });
+  }
   const dispatch = useDispatch();
   const [creds, setCreds] = useState({ email: "", password: "" });
   const handleChange = (e) => {
@@ -28,6 +39,7 @@ export default function SignIn() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser(creds));
+    setCreds({ email: "", password: "" });
   };
   return (
     <Flex
@@ -58,6 +70,7 @@ export default function SignIn() {
                   name="email"
                   onChange={handleChange}
                   placeholder="Enter email"
+                  value={creds.email}
                 />
               </FormControl>
               <FormControl id="password">
@@ -67,6 +80,7 @@ export default function SignIn() {
                   name="password"
                   onChange={handleChange}
                   placeholder="Enter Password"
+                  value={creds.password}
                 />
               </FormControl>
               <Stack spacing={10}>
@@ -87,8 +101,7 @@ export default function SignIn() {
                       bg: "blue.500",
                     }}
                     isLoading
-                  >
-                  </Button>
+                  ></Button>
                 ) : (
                   <Button
                     bg={"blue.400"}

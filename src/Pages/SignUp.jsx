@@ -19,10 +19,11 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../Redux/AuthReducer/auth.actions";
 import { useToast } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const toast = useToast();
   const [userData, setUserData] = useState({
@@ -42,7 +43,14 @@ export default function SignUp() {
     e.preventDefault();
     dispatch(registerUser(userData));
     setUserData({ name: "", username: "", email: "", password: "" });
-    setLoading(false);
+    toast({
+      title: "Account created successfully!",
+      position: "top-left",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+    navigate("/signin");
   };
 
   return (
@@ -137,22 +145,17 @@ export default function SignUp() {
                     bg: "blue.500",
                   }}
                   type="submit"
-                  onClick={() =>
-                    toast({
-                      title: "Account created successfully!",
-                      position: "top-left",
-                      status: "success",
-                      duration: 9000,
-                      isClosable: true,
-                    })
-                  }
                 >
                   Sign up
                 </Button>
               </Stack>
               <Stack pt={6}>
                 <Text align={"center"}>
-                  Already a user? <Link to={"/signin"}> <span style={{color: "#4299e1"}}>Login</span> </Link>
+                  Already a user?{" "}
+                  <Link to={"/signin"}>
+                    {" "}
+                    <span style={{ color: "#4299e1" }}>Login</span>{" "}
+                  </Link>
                 </Text>
               </Stack>
             </Stack>
