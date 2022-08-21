@@ -55,7 +55,6 @@ function ProductCard({ data }) {
     <Flex p={50} w="full" alignItems="center" justifyContent="center">
       <Box
         bg={useColorModeValue("white", "gray.800")}
-        maxW="sm"
         borderWidth="1px"
         rounded="lg"
         shadow="lg"
@@ -108,7 +107,7 @@ function ProductCard({ data }) {
             <Rating rating={data.rating} numReviews={20} />
             <Box fontSize="2xl" color={useColorModeValue("gray.800", "white")}>
               <Box as="span" color={"gray.600"} fontSize="lg">
-                £
+                ₹
               </Box>
               {data.cost.toFixed(2)}
             </Box>

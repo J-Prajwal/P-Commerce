@@ -37,7 +37,7 @@ const Mens = () => {
     <div>
       <Navbar />
       <CarouselComponent sliderData={sliderData} />
-      <SimpleGrid columns={[1, 2, 4]} spacing={10}>
+      <SimpleGrid columns={[1, 2, 3]} spacing={10}>
         {mens.length > 0 && mens.map((ele) => <ProductCard data={ele} key={ele.id} />)}
       </SimpleGrid>
       <Footer />
