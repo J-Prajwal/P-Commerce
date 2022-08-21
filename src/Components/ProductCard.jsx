@@ -50,7 +50,7 @@ function Rating({ rating, numReviews }) {
   );
 }
 
-function ProductCard() {
+function ProductCard({ data }) {
   return (
     <Flex p={50} w="full" alignItems="center" justifyContent="center">
       <Box
@@ -61,29 +61,25 @@ function ProductCard() {
         shadow="lg"
         position="relative"
       >
-        {data.isNew && (
-          <Circle
-            size="10px"
-            position="absolute"
-            top={2}
-            right={2}
-            bg="red.200"
-          />
-        )}
+        <Circle
+          size="10px"
+          position="absolute"
+          top={2}
+          right={2}
+          bg="red.200"
+        />
 
         <Image
-          src={data.imageURL}
-          alt={`Picture of ${data.name}`}
+          src={data.imgUrl}
+          alt={`Picture of ${data.title}`}
           roundedTop="lg"
         />
 
         <Box p="6">
           <Box d="flex" alignItems="baseline">
-            {data.isNew && (
-              <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
-                New
-              </Badge>
-            )}
+            <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
+              New
+            </Badge>
           </Box>
           <Flex mt="1" justifyContent="space-between" alignContent="center">
             <Box
@@ -93,7 +89,7 @@ function ProductCard() {
               lineHeight="tight"
               isTruncated
             >
-              {data.name}
+              {data.title}
             </Box>
             <Tooltip
               label="Add to cart"
@@ -109,12 +105,12 @@ function ProductCard() {
           </Flex>
 
           <Flex justifyContent="space-between" alignContent="center">
-            <Rating rating={data.rating} numReviews={data.numReviews} />
+            <Rating rating={data.rating} numReviews={20} />
             <Box fontSize="2xl" color={useColorModeValue("gray.800", "white")}>
               <Box as="span" color={"gray.600"} fontSize="lg">
                 £
               </Box>
-              {data.price.toFixed(2)}
+              {data.cost.toFixed(2)}
             </Box>
           </Flex>
         </Box>

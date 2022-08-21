@@ -2,18 +2,20 @@ import React from "react";
 import CarouselComponent from "../Components/CarouselComponent";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
-import ProductCard from "../Components/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { mensData } from "../Redux/Mens/mens.actions";
+import ProductCard from "../Components/ProductCard";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 
 const Mens = () => {
-  const mens = useSelector((state) => state.mensReducer);
-  const dispatch = useDispatch;
-  console.log(mens);
+  const dispatch = useDispatch();
+  const { mens } = useSelector((state) => state.mensReducer);
+
   useEffect(() => {
     dispatch(mensData());
-  });
+  }, []);
+
   const sliderData = [
     {
       imgUrl:
@@ -35,7 +37,9 @@ const Mens = () => {
     <div>
       <Navbar />
       <CarouselComponent sliderData={sliderData} />
-      <ProductCard />
+      <SimpleGrid columns={[1, 2, 4]} spacing={10}>
+        {mens.length > 0 && mens.map((ele) => <ProductCard data={ele} key={ele.id} />)}
+      </SimpleGrid>
       <Footer />
     </div>
   );
