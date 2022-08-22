@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { mensData } from "../Redux/Mens/mens.actions";
 import ProductCard from "../Components/ProductCard";
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box, Center, CircularProgress, SimpleGrid } from "@chakra-ui/react";
+import ProductSidebar from "../Components/ProductSidebar";
 
 const Mens = () => {
   const dispatch = useDispatch();
-  const { mens } = useSelector((state) => state.mensReducer);
+  const { mens, isLoading } = useSelector((state) => state.mensReducer);
 
   useEffect(() => {
     dispatch(mensData());
@@ -37,9 +38,17 @@ const Mens = () => {
     <div>
       <Navbar />
       <CarouselComponent sliderData={sliderData} />
-      <SimpleGrid columns={[1, 2, 3]} spacing={10}>
-        {mens.length > 0 && mens.map((ele) => <ProductCard data={ele} key={ele.id} />)}
-      </SimpleGrid>
+      {isLoading ? (
+        <Center mt={"10%"}>
+          <CircularProgress size={"100px"} isIndeterminate color="blue.400" />
+        </Center>
+      ) : (
+        <SimpleGrid columns={[1, 2, 3]} spacing={10}>
+          {mens.length > 0 &&
+            mens.map((ele) => <ProductCard data={ele} key={ele.id} />)}
+        </SimpleGrid>
+      )}
+      <ProductSidebar />
       <Footer />
     </div>
   );

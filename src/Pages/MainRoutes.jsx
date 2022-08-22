@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Cart from "./Cart";
 // import { RequiredAuth } from "../Hoc/RequiredAuth";
 import Details from "./Details";
-import Error from "./error";
+import Error from "./Error";
 import Home from "./Home";
 import Kids from "./Kids";
 import Mens from "./Mens";
