@@ -1,13 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Cart from "./Cart";
-// import { RequiredAuth } from "../Hoc/RequiredAuth";
 import Details from "./Details";
 import Error from "./Error";
 import Home from "./Home";
 import Kids from "./Kids";
 import Mens from "./Mens";
-import SignIn from "./SignIn";
+import { Signin } from "./SignIn";
 import SignUp from "./SignUp";
 import Womens from "./Womens";
 
@@ -21,7 +20,7 @@ const MainRoutes = () => {
       <Route path="/Womens/:id" element={<Details />}></Route>
       <Route path="/Kids" element={<Kids />}></Route>
       <Route path="/Kids/:id" element={<Details />}></Route>
-      <Route path="/signin" element={<SignIn />}></Route>
+      <Route path="/signin" element={<Signin />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/error" element={<Error />}></Route>

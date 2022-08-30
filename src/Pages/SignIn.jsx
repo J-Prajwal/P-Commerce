@@ -1,132 +1,111 @@
 import {
-  Flex,
   Box,
+  Button,
+  Checkbox,
+  Container,
+  Divider,
   FormControl,
   FormLabel,
-  Input,
-  Checkbox,
-  Stack,
-  Link,
-  Button,
   Heading,
+  HStack,
+  Input,
+  Stack,
   Text,
+  useBreakpointValue,
   useColorModeValue,
-  useToast,
 } from "@chakra-ui/react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
-import { loginUser } from "../Redux/AuthReducer/auth.actions";
+import * as React from "react";
+import { Logo } from "../Components/Logo";
+import { OAuthButtonGroup } from "../Components/OAuthButtonGroup";
+import { PasswordField } from "../Components/PasswordField";
 
-export default function SignIn() {
-  const toast = useToast();
-  const { isLoading, isAuth } = useSelector((state) => state.authReducer);
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const comingFrom = location.state?.from?.pathname || "/";
-  console.log(comingFrom);
-  if (isAuth) {
-    navigate(comingFrom, { replace: true });
-  }
-  const dispatch = useDispatch();
-  const [creds, setCreds] = useState({ email: "", password: "" });
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setCreds((values) => ({ ...values, [name]: value }));
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(loginUser(creds));
-    setCreds({ email: "", password: "" });
-  };
-  return (
-    <Flex
-      minH={"100vh"}
-      align={"center"}
-      justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
-    >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-        <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Sign in to your account</Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool <Link color={"blue.400"}>features</Link> ✌️
-          </Text>
-        </Stack>
-        <Box
-          rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
-          boxShadow={"lg"}
-          p={8}
+export const Signin = () => (
+  <Container
+    maxW="lg"
+    py={{
+      base: "12",
+      md: "24",
+    }}
+    px={{
+      base: "0",
+      sm: "8",
+    }}
+  >
+    <Stack spacing="8">
+      <Stack spacing="6">
+        <Logo />
+        <Stack
+          spacing={{
+            base: "2",
+            md: "3",
+          }}
+          textAlign="center"
         >
-          <form method="post" onSubmit={handleSubmit}>
-            <Stack spacing={4}>
-              <FormControl id="email">
-                <FormLabel>Email address</FormLabel>
-                <Input
-                  type="email"
-                  name="email"
-                  onChange={handleChange}
-                  placeholder="Enter email"
-                  value={creds.email}
-                />
-              </FormControl>
-              <FormControl id="password">
-                <FormLabel>Password</FormLabel>
-                <Input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  placeholder="Enter Password"
-                  value={creds.password}
-                />
-              </FormControl>
-              <Stack spacing={10}>
-                <Stack
-                  direction={{ base: "column", sm: "row" }}
-                  align={"start"}
-                  justify={"space-between"}
-                >
-                  <Checkbox>Remember me</Checkbox>
-                  <Link color={"blue.400"}>Forgot password?</Link>
-                </Stack>
-
-                {isLoading ? (
-                  <Button
-                    bg={"blue.400"}
-                    color={"white"}
-                    _hover={{
-                      bg: "blue.500",
-                    }}
-                    isLoading
-                  ></Button>
-                ) : (
-                  <Button
-                    bg={"blue.400"}
-                    color={"white"}
-                    _hover={{
-                      bg: "blue.500",
-                    }}
-                    type="submit"
-                  >
-                    Sign-In
-                  </Button>
-                )}
-              </Stack>
-            </Stack>
-          </form>
-        </Box>
+          <Heading
+            size={useBreakpointValue({
+              base: "xs",
+              md: "sm",
+            })}
+          >
+            Log in to your account
+          </Heading>
+          <HStack spacing="1" justify="center">
+            <Text color="muted">Don't have an account?</Text>
+            <Button variant="link" colorScheme="blue">
+              Sign up
+            </Button>
+          </HStack>
+        </Stack>
       </Stack>
-    </Flex>
-  );
-}
-
-// if (isLoading) {
-//   return (
-//     <Center mt={"15%"}>
-//       <CircularProgress size={"100px"} isIndeterminate color="blue.300" />
-//     </Center>
-//   );
-// }
+      <Box
+        py={{
+          base: "0",
+          sm: "8",
+        }}
+        px={{
+          base: "4",
+          sm: "10",
+        }}
+        bg={useBreakpointValue({
+          base: "transparent",
+          sm: "bg-surface",
+        })}
+        boxShadow={{
+          base: "none",
+          sm: useColorModeValue("md", "md-dark"),
+        }}
+        borderRadius={{
+          base: "none",
+          sm: "xl",
+        }}
+      >
+        <Stack spacing="6">
+          <Stack spacing="5">
+            <FormControl>
+              <FormLabel htmlFor="email">Email</FormLabel>
+              <Input id="email" type="email" />
+            </FormControl>
+            <PasswordField />
+          </Stack>
+          <HStack justify="space-between">
+            <Checkbox defaultChecked>Remember me</Checkbox>
+            <Button variant="link" colorScheme="blue" size="sm">
+              Forgot password?
+            </Button>
+          </HStack>
+          <Stack spacing="6">
+            <Button variant="primary">Sign in</Button>
+            <HStack>
+              <Divider />
+              <Text fontSize="sm" whiteSpace="nowrap" color="muted">
+                or continue with
+              </Text>
+              <Divider />
+            </HStack>
+            <OAuthButtonGroup />
+          </Stack>
+        </Stack>
+      </Box>
+    </Stack>
+  </Container>
+);
