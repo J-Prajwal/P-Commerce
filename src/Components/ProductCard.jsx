@@ -62,6 +62,8 @@ function ProductCard({ data }) {
           src={data.imgUrl}
           alt={`Picture of ${data.title}`}
           roundedTop="lg"
+          h={"16rem"}
+          w="100%"
         />
 
         <Box p="6">
@@ -72,7 +74,7 @@ function ProductCard({ data }) {
           </Box>
           <Flex mt="1" justifyContent="space-between" alignContent="center">
             <Box
-              fontSize="2xl"
+              fontSize="xl"
               fontWeight="semibold"
               as="h4"
               lineHeight="tight"
@@ -95,9 +97,9 @@ function ProductCard({ data }) {
 
           <Flex justifyContent="space-between" alignContent="center">
             <Rating rating={data.rating} numReviews={20} />
-            <Box fontSize="2xl" color={useColorModeValue("gray.800", "white")}>
+            <Box fontSize="xl" color={useColorModeValue("gray.800", "white")}>
               <Box as="span" color={"gray.600"} fontSize="lg">
-                ₹
+                ₹{" "}
               </Box>
               {data.cost.toFixed(2)}
             </Box>

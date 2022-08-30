@@ -5,7 +5,7 @@ const initialState = {
   username: getItem("username") || false,
   userData: [],
   token: getItem("token") || "",
-  isAuth:  false,
+  isAuth: getItem("token") ? true : false,
   isLoading: false,
   isError: false,
   loginSuccess: false,
@@ -39,6 +39,7 @@ export const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         token: "",
+        isAuth: false,
       };
     }
     default: {

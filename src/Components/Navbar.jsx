@@ -18,11 +18,17 @@ import {
   MenuList,
   MenuItem,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon, SearchIcon } from "@chakra-ui/icons";
+import {
+  HamburgerIcon,
+  CloseIcon,
+  SearchIcon,
+  ChevronDownIcon,
+} from "@chakra-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { ImCart } from "react-icons/im";
 import { getItem, removeItem } from "../Utils/localStorage";
+import { useSelector } from "react-redux";
 
 const Links = ["Mens", "Womens", "Kids"];
 
@@ -41,12 +47,14 @@ const NavLink = ({ children }) => (
 );
 
 export default function Navbar() {
+  const { isAuth } = useSelector((state) => state.authReducer);
+  const username = getItem("username");
+  console.log(username);
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
-  const user = getItem("user");
   const logoutHandler = () => {
-    removeItem("user");
+    removeItem("username");
     removeItem("token");
     navigate("/");
   };
@@ -96,7 +104,7 @@ export default function Navbar() {
               <ImCart color={colorMode === "light" ? "black" : "white"} />
             </Button>
 
-            {user != undefined ? (
+            {isAuth ? (
               <Menu>
                 {({ isOpen }) => (
                   <div>
@@ -104,11 +112,12 @@ export default function Navbar() {
                       isActive={isOpen}
                       as={Button}
                       variant={"solid"}
-                      colorScheme={"blue"}
+                      colorScheme={"none"}
+                      color={colorMode == "dark" ? "white" : "black"}
                       size={"sm"}
                       px={5}
                     >
-                      {user}
+                      Welcome {username} <ChevronDownIcon />
                     </MenuButton>
                     <MenuList>
                       <MenuItem>User Profile</MenuItem>

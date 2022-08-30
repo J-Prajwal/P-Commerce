@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
+import { Category } from "../Components/Category";
 import Footer from "../Components/Footer";
 import Hero from "../Components/Hero";
 import Navbar from "../Components/Navbar";
@@ -16,6 +17,7 @@ const Home = () => {
   return (
     <div>
       <Navbar />
+      <Category />
       <Hero />
 
       {/* Sections Start */}
