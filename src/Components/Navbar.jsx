@@ -62,11 +62,23 @@ export default function Navbar() {
   };
   return (
     <>
-      <Box bg={useColorModeValue("blue.200", "blue.900")} px={4}>
+      <Box
+        bg={useColorModeValue("blue.100", "blue.900")}
+        px={4}
+        position={"fixed"}
+        w={"100%"}
+        zIndex={"999"}
+      >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
-            size={"md"}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            backgroundColor={"transparent"}
+            icon={
+              isOpen ? (
+                <CloseIcon backgroundColor={"transparent"} />
+              ) : (
+                <HamburgerIcon />
+              )
+            }
             aria-label={"Open Menu"}
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
@@ -92,7 +104,11 @@ export default function Navbar() {
               <InputLeftElement>
                 <SearchIcon />
               </InputLeftElement>
-              <Input variant={"flushed"} placeholder="Search"></Input>
+              <Input
+                variant={"flushed"}
+                borderColor={"gray.500"}
+                placeholder="Search"
+              ></Input>
             </InputGroup>
             <Button
               display={{ base: "none", md: "flex" }}
@@ -161,7 +177,7 @@ export default function Navbar() {
               </Menu>
             ) : (
               <Button
-                variant={"solid"}
+                variant={"outline"}
                 colorScheme={"blue"}
                 size={"sm"}
                 px={5}
