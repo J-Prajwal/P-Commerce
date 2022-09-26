@@ -22,7 +22,42 @@ export default function Hero() {
         py={{ base: 20, md: 28 }}
         direction={{ base: "column", md: "row" }}
       >
-        <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+        <Flex
+          flex={1}
+          justify={"center"}
+          align={"center"}
+          position={"relative"}
+          w={"full"}
+        >
+          <Blob
+            w={"150%"}
+            h={"150%"}
+            position={"absolute"}
+            top={"-20%"}
+            left={0}
+            zIndex={-1}
+            color={useColorModeValue("blue.100", "blue.400")}
+          />
+          <Box
+            position={"relative"}
+            height={"350px"}
+            rounded={"2xl"}
+            boxShadow={"2xl"}
+            width={"full"}
+            overflow={"hidden"}
+          >
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/2LCNqRj6tJU"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </Box>
+        </Flex>
+        <Stack flex={1} spacing={{ base: 5, md: 10 }} textAlign={"right"}>
           <Heading
             lineHeight={1.1}
             fontWeight={600}
@@ -55,9 +90,10 @@ export default function Hero() {
             exploring more and more of it's features and do reach out to me with
             your valuable feedbacks.
           </Text>
-          <Stack
+          <Flex
             spacing={{ base: 4, sm: 6 }}
             direction={{ base: "column", sm: "row" }}
+            justifyContent={"right"}
           >
             <Button
               rounded={"full"}
@@ -79,56 +115,8 @@ export default function Hero() {
             >
               How We Work
             </Button>
-          </Stack>
+          </Flex>
         </Stack>
-        <Flex
-          flex={1}
-          justify={"center"}
-          align={"center"}
-          position={"relative"}
-          w={"full"}
-        >
-          <Blob
-            w={"150%"}
-            h={"150%"}
-            position={"absolute"}
-            top={"-20%"}
-            left={0}
-            zIndex={-1}
-            color={useColorModeValue("blue.50", "blue.400")}
-          />
-          <Box
-            position={"relative"}
-            height={"300px"}
-            rounded={"2xl"}
-            boxShadow={"2xl"}
-            width={"full"}
-            overflow={"hidden"}
-          >
-            <IconButton
-              aria-label={"Play Button"}
-              variant={"ghost"}
-              _hover={{ bg: "transparent" }}
-              icon={<PlayIcon w={12} h={12} />}
-              size={"lg"}
-              color={"white"}
-              position={"absolute"}
-              left={"50%"}
-              top={"50%"}
-              transform={"translateX(-50%) translateY(-50%)"}
-            />
-            <Image
-              alt={"Hero Image"}
-              fit={"cover"}
-              align={"center"}
-              w={"100%"}
-              h={"100%"}
-              src={
-                "https://images.unsplash.com/photo-1543322748-33df6d3db806?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"
-              }
-            />
-          </Box>
-        </Flex>
       </Stack>
     </Container>
   );

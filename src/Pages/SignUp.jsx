@@ -41,16 +41,8 @@ export default function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(registerUser(userData));
+    dispatch(registerUser(userData, toast, navigate));
     setUserData({ name: "", username: "", email: "", password: "" });
-    toast({
-      title: "Account created successfully!",
-      position: "top-left",
-      status: "success",
-      duration: 9000,
-      isClosable: true,
-    });
-    navigate("/signin");
   };
 
   return (

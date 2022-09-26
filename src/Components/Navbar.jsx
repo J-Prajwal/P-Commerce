@@ -41,7 +41,7 @@ const NavLink = ({ children }) => (
     rounded={"md"}
     _hover={{
       textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
+      bg: useColorModeValue("blue.200", "blue.700"),
     }}
   >
     <Link to={`/${children}`}>{children}</Link>
@@ -62,7 +62,7 @@ export default function Navbar() {
   };
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box bg={useColorModeValue("blue.200", "blue.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -74,7 +74,7 @@ export default function Navbar() {
           <HStack spacing={8} alignItems={"center"}>
             <Box>
               <Link to={"/"}>
-                <Heading size={"md"}>P-Comm</Heading>
+                <Heading size={"lg"}>P-Comm</Heading>
               </Link>
             </Box>
             <HStack
@@ -133,7 +133,6 @@ export default function Navbar() {
                   99
                 </chakra.span>
               </chakra.span>
-              ;
             </Button>
 
             {isAuth ? (
@@ -149,7 +148,7 @@ export default function Navbar() {
                       size={"sm"}
                       px={5}
                     >
-                      Welcome {username} <ChevronDownIcon />
+                      {username} <ChevronDownIcon />
                     </MenuButton>
                     <MenuList>
                       <MenuItem>User Profile</MenuItem>
@@ -168,7 +167,7 @@ export default function Navbar() {
                 px={5}
                 onClick={onOpen}
               >
-                <Link to={"/signup"}>New Here?</Link>
+                <Link to={"/signup"}>Signup</Link>
               </Button>
             )}
           </Flex>

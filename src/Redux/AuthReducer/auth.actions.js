@@ -2,11 +2,12 @@ import axios from "axios";
 import { removeItem, setItem } from "../../Utils/localStorage";
 import * as types from "./auth.actionTypes";
 
-export const loginUser = (payload) => (dispatch) => {
+export const loginUser = (creds) => (dispatch) => {
   dispatch({ type: types.LOGIN_USER_REQUEST });
   return axios
-    .post("https://pcomm-api.herokuapp.com/users/login", payload)
+    .post("http://localhost:8080/users/login", creds)
     .then((res) => {
+      console.log(res.data);
       const username = res.data.user.name.split(" ")[0];
       setItem("token", res.data.token);
       setItem("username", username);
@@ -21,10 +22,10 @@ export const loginUser = (payload) => (dispatch) => {
     });
 };
 
-export const registerUser = (payload) => (dispatch) => {
+export const registerUser = (userData, toast, navigate) => (dispatch) => {
   dispatch({ type: types.REGISTER_USER_REQUEST });
   return axios
-    .post("https://pcomm-api.herokuapp.com/users/register", payload)
+    .post("http://localhost:8080/users/register", userData)
     .then((res) => {
       dispatch({ type: types.REGISTER_USER_SUCCESS, payload: res.data });
     })
