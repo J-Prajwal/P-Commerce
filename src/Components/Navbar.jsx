@@ -65,9 +65,12 @@ export default function Navbar() {
       <Box
         bg={useColorModeValue("blue.100", "blue.900")}
         px={4}
+        top={0}
         position={"fixed"}
         w={"100%"}
         zIndex={"999"}
+        m={"auto"}
+        mb={10}
       >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
