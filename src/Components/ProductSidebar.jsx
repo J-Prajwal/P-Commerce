@@ -6,7 +6,6 @@ import {
   Flex,
   Icon,
   useColorModeValue,
-  Link,
   Drawer,
   DrawerContent,
   Text,
@@ -27,15 +26,16 @@ import {
   FiMenu,
 } from "react-icons/fi";
 import { SearchIcon } from "@chakra-ui/icons";
+import { ImCart } from "react-icons/im";
+import { Link } from "react-router-dom";
 
 const LinkItems = [
   { name: "Home", icon: FiHome },
-  { name: "Trending", icon: FiTrendingUp },
-  { name: "Explore", icon: FiCompass },
-  { name: "Favourites", icon: FiStar },
-  { name: "Settings", icon: FiSettings },
+  { name: "Mens", icon: FiTrendingUp },
+  { name: "Womens", icon: FiCompass },
+  { name: "Kids", icon: FiStar },
+  { name: "Cart", icon: ImCart },
 ];
-
 export default function ProductSidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -95,7 +95,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
 const NavItem = ({ icon, children, ...rest }) => {
   return (
     <Link
-      href="#"
+      to={"/" + children}
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
     >
@@ -148,7 +148,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
       />
       <HStack>
         <Text fontSize={["lg", "2xl"]}>Show</Text>
-        <Select size={["xs"]}>
+        <Select size={["xs", "lg"]}>
           <option value="t-shirt">T-Shirts</option>
           <option value="jeans">Jeans</option>
           <option value="shirts">Shirts</option>
@@ -158,7 +158,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
       </HStack>
       <HStack>
         <Text fontSize={["lg", "2xl"]}>Budget</Text>
-        <Select size={["xs"]}>
+        <Select size={["xs", "lg"]}>
           <option value="">Costliest</option>
           <option value="">Cheapest</option>
         </Select>

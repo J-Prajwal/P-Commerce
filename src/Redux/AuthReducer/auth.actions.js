@@ -28,9 +28,11 @@ export const registerUser = (userData) => (dispatch) => {
     .post("http://localhost:8080/users/register", userData)
     .then((res) => {
       dispatch({ type: types.REGISTER_USER_SUCCESS, payload: res.data });
+      return true;
     })
     .catch((err) => {
       dispatch({ type: types.REGISTER_USER_FAILURE });
+      return false;
     });
 };
 

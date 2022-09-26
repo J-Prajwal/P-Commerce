@@ -41,7 +41,28 @@ export default function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(registerUser(userData, toast, navigate));
+    dispatch(registerUser(userData)).then((res) => {
+      if (res) {
+        toast({
+          title: "Signup Successful!",
+          status: "success",
+          duration: 3000,
+          variant: "top-accent",
+          isClosable: true,
+          position: "top-left",
+        });
+        navigate("/signin");
+      } else {
+        toast({
+          title: "Please try again",
+          status: "error",
+          duration: 3000,
+          variant: "top-accent",
+          isClosable: true,
+          position: "top-left",
+        });
+      }
+    });
     setUserData({ name: "", username: "", email: "", password: "" });
   };
 

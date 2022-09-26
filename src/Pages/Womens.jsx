@@ -8,7 +8,7 @@ const Womens = () => {
   return (
     <div>
       <Navbar />
-      <Heading>Womens</Heading>
+      <Heading mt={10}>Womens</Heading>
       <ShopByCategories />
       <Footer />
     </div>
