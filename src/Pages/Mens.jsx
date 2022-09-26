@@ -36,19 +36,18 @@ const Mens = () => {
   ];
   return (
     <div>
-      <Navbar />
-      <CarouselComponent sliderData={sliderData} />
-      {isLoading ? (
-        <Center mt={"10%"}>
-          <CircularProgress size={"100px"} isIndeterminate color="blue.400" />
-        </Center>
-      ) : (
-        <SimpleGrid columns={[1, 2, 3]} spacing={10}>
-          {mens.length > 0 &&
-            mens.map((ele) => <ProductCard data={ele} key={ele.id} />)}
-        </SimpleGrid>
-      )}
-      <ProductSidebar />
+      <ProductSidebar>
+        {isLoading ? (
+          <Center mt={"10%"}>
+            <CircularProgress size={"100px"} isIndeterminate color="blue.400" />
+          </Center>
+        ) : (
+          <SimpleGrid columns={[1, 2, 3]} spacing={10}>
+            {mens.length > 0 &&
+              mens.map((ele) => <ProductCard data={ele} key={ele.id} />)}
+          </SimpleGrid>
+        )}
+      </ProductSidebar>
       <Footer />
     </div>
   );

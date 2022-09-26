@@ -4,13 +4,8 @@ import axios from "axios";
 
 export const mensData = () => (dispatch) => {
   dispatch({ type: types.GET_MENS_PRODUCT_REQUEST });
-  const token = localStorage.getItem("token");
   return axios
-    .get("https://pcomm-api.herokuapp.com/mens", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
+    .get("http://localhost:8080/mens")
     .then((res) => {
       console.log(res);
       dispatch({ type: types.GET_MENS_PRODUCT_SUCCESS, payload: res.data });

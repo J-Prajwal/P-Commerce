@@ -22,7 +22,7 @@ export const loginUser = (creds) => (dispatch) => {
     });
 };
 
-export const registerUser = (userData, toast, navigate) => (dispatch) => {
+export const registerUser = (userData) => (dispatch) => {
   dispatch({ type: types.REGISTER_USER_REQUEST });
   return axios
     .post("http://localhost:8080/users/register", userData)
