@@ -8,14 +8,15 @@ import { mensData } from "../Redux/Mens/mens.actions";
 import ProductCard from "../Components/ProductCard";
 import { Box, Center, CircularProgress, SimpleGrid } from "@chakra-ui/react";
 import ProductSidebar from "../Components/ProductSidebar";
+import { useState } from "react";
 
 const Mens = () => {
   const dispatch = useDispatch();
   const { mens, isLoading } = useSelector((state) => state.mensReducer);
-
+  const [category, setCategory] = useState("");
   useEffect(() => {
-    dispatch(mensData());
-  }, []);
+    dispatch(mensData(category));
+  }, [category]);
 
   const sliderData = [
     {
@@ -36,7 +37,7 @@ const Mens = () => {
   ];
   return (
     <div>
-      <ProductSidebar>
+      <ProductSidebar setCategory={setCategory}>
         {isLoading ? (
           <Center mt={"10%"}>
             <CircularProgress size={"100px"} isIndeterminate color="blue.400" />

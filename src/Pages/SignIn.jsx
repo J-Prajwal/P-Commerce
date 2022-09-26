@@ -25,15 +25,8 @@ import { loginUser } from "../Redux/AuthReducer/auth.actions";
 
 export const Signin = () => {
   const toast = useToast();
-  const { isLoading, isAuth } = useSelector((state) => state.authReducer);
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const comingFrom = location.state?.from?.pathname || "/";
-  console.log(comingFrom);
-  if (isAuth) {
-    navigate(comingFrom, { replace: true });
-  }
   const dispatch = useDispatch();
   const [creds, setCreds] = React.useState({ email: "", password: "" });
   const handleChange = (e) => {
@@ -44,7 +37,28 @@ export const Signin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(creds);
-    dispatch(loginUser(creds));
+    dispatch(loginUser(creds)).then((res) => {
+      if (res) {
+        toast({
+          title: "Login Successful!",
+          status: "success",
+          duration: 3000,
+          variant: "top-accent",
+          isClosable: true,
+          position: "top-left",
+        });
+        navigate("/Mens");
+      } else {
+        toast({
+          title: "Please try again",
+          status: "error",
+          duration: 3000,
+          variant: "top-accent",
+          isClosable: true,
+          position: "top-left",
+        });
+      }
+    });
     setCreds({ email: "", password: "" });
   };
   return (
@@ -80,9 +94,7 @@ export const Signin = () => {
             <HStack spacing="1" justify="center">
               <Text color="muted">Don't have an account?</Text>
               <Button variant="link" colorScheme="blue">
-                <Link to={"/signup"}>
-                Sign up
-                </Link>
+                <Link to={"/signup"}>Sign up</Link>
               </Button>
             </HStack>
           </Stack>
@@ -140,7 +152,9 @@ export const Signin = () => {
                 </Button>
               </HStack>
               <Stack spacing="6">
-                <Button variant="solid" mt={5} type="submit">Sign in</Button>
+                <Button variant="solid" mt={5} type="submit">
+                  Sign in
+                </Button>
                 <HStack>
                   <Divider />
                   <Text fontSize="sm" whiteSpace="nowrap" color="muted">
