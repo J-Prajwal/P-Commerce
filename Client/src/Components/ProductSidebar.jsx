@@ -28,6 +28,12 @@ import {
 import { SearchIcon } from "@chakra-ui/icons";
 import { ImCart } from "react-icons/im";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  mensData,
+  sortByPrice,
+  sortByRating,
+} from "../Redux/Mens/mens.actions";
 
 const LinkItems = [
   { name: "Home", icon: FiHome },
@@ -39,7 +45,7 @@ const LinkItems = [
 export default function ProductSidebar({ children, setCategory }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box minH="100vh">
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -72,15 +78,7 @@ export default function ProductSidebar({ children, setCategory }) {
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
-    <Box
-      bg={useColorModeValue("white", "gray.900")}
-      borderRight="1px"
-      borderRightColor={useColorModeValue("gray.200", "gray.700")}
-      w={{ base: "full", md: 60 }}
-      pos="fixed"
-      h="full"
-      {...rest}
-    >
+    <Box w={{ base: "full", md: 60 }} pos="fixed" h="full" {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="4xl" fontFamily="monospace" fontWeight="bold">
           P-Comm
@@ -133,6 +131,22 @@ const NavItem = ({ icon, children, ...rest }) => {
 };
 
 const MobileNav = ({ setCategory, onOpen, ...rest }) => {
+  const dispatch = useDispatch();
+  const handlePriceChange = (order) => {
+    if (order.length > 0) {
+      dispatch(sortByPrice(order));
+    } else {
+      dispatch(mensData());
+    }
+  };
+  const handleRatingChange = (order) => {
+    if (order.length > 0) {
+      console.log(order);
+      dispatch(sortByRating(order));
+    } else {
+      dispatch(mensData());
+    }
+  };
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -151,20 +165,24 @@ const MobileNav = ({ setCategory, onOpen, ...rest }) => {
         display={{ base: "flex", md: "none" }}
       />
       <HStack>
-        <Text fontSize={["lg", "2xl"]}>Show</Text>
-        <Select size={["xs", "lg"]}>
-          <option value="t-shirt">T-Shirts</option>
-          <option value="jeans">Jeans</option>
-          <option value="shirts">Shirts</option>
-          <option value="suit">Suits</option>
-          <option value="shoes">Shoes</option>
+        <Text fontSize={["lg", "2xl"]}>Rating</Text>
+        <Select
+          size={["xs", "lg"]}
+          onChange={(e) => handleRatingChange(e.target.value)}
+        >
+          <option value="highest">Highest</option>
+          <option value="lowest">Lowest</option>
         </Select>
       </HStack>
       <HStack>
-        <Text fontSize={["lg", "2xl"]}>Budget</Text>
-        <Select size={["xs", "lg"]}>
-          <option value="">Costliest</option>
-          <option value="">Cheapest</option>
+        <Text fontSize={["lg", "2xl"]}>Price</Text>
+        <Select
+          size={["xs", "lg"]}
+          onChange={(e) => handlePriceChange(e.target.value)}
+        >
+          <option value="">Choose</option>
+          <option value="high">Costliest</option>
+          <option value="low">Cheapest</option>
         </Select>
       </HStack>
       <HStack w={["100%", "50%"]}>
@@ -175,7 +193,7 @@ const MobileNav = ({ setCategory, onOpen, ...rest }) => {
           <Input
             variant={"flushed"}
             borderColor={"gray.500"}
-            placeholder="Search"
+            placeholder="Have a specific brand / item in mind? Search it!"
             onChange={(e) => setCategory(e.target.value)}
           ></Input>
         </InputGroup>
