@@ -1,7 +1,5 @@
 import React from "react";
-import CarouselComponent from "../Components/CarouselComponent";
 import Footer from "../Components/Footer";
-import Navbar from "../Components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { mensData } from "../Redux/Mens/mens.actions";
