@@ -8,12 +8,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { Link } from "react-router-dom";
 import { Category } from "../Components/Category";
 import Footer from "../Components/Footer";
 import Hero from "../Components/Hero";
 import Navbar from "../Components/Navbar";
-import { FaArrowRight } from "react-icons/fa";
 
 const Home = () => {
   return (
