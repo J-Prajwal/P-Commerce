@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use("/users", userController);
 app.use("/mens", mensController);
-app.use("cart", cartController);
+app.use("/cart", cartController);
 
 app.get("/", (req, res) => {
   res.send("Homepage");
