@@ -58,8 +58,16 @@ const Home = () => {
             />
           </Box>
         </Flex>
-        <SimpleGrid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]} mt={10} gap={10}>
-          <Box m={"auto"} w={["xs", "xl"]} h={[, "sm"]}>
+        <SimpleGrid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+          ]}
+          mt={10}
+          gap={10}
+        >
+          <Box m={"auto"} w={["xs", "md", "xl"]} h={[, "sm"]}>
             <Image
               w={"100%"}
               h={"100%"}
@@ -67,7 +75,7 @@ const Home = () => {
               src="https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1009&q=80"
             />
           </Box>
-          <Box m={"auto"} w={["xs", "xl"]} h={[, "sm"]}>
+          <Box m={"auto"} w={["xs", "md", "xl"]} h={[, "sm"]}>
             <Image
               w={"100%"}
               h={"100%"}
@@ -117,8 +125,16 @@ const Home = () => {
             />
           </Box>
         </Flex>
-        <SimpleGrid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]} mt={10} gap={10}>
-          <Box m={"auto"} w={["xs", "xl"]} h={[, "sm"]}>
+        <SimpleGrid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+          ]}
+          mt={10}
+          gap={10}
+        >
+          <Box m={"auto"} w={["xs", "md", "xl"]} h={[, "sm"]}>
             <Image
               w={"100%"}
               h={"100%"}
@@ -126,7 +142,7 @@ const Home = () => {
               src="https://images.unsplash.com/photo-1649864728256-e1ce28877154?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"
             />
           </Box>
-          <Box m={"auto"} w={["xs", "xl"]} h={[, "sm"]}>
+          <Box m={"auto"} w={["xs", "md", "xl"]} h={[, "sm"]}>
             <Image
               w={"100%"}
               h={"100%"}
@@ -176,8 +192,16 @@ const Home = () => {
             />
           </Box>
         </Flex>
-        <SimpleGrid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]} mt={10} gap={10}>
-          <Box m={"auto"} w={["xs", "xl"]} h={[, "sm"]}>
+        <SimpleGrid
+          templateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(1, 1fr)",
+            "repeat(2, 1fr)",
+          ]}
+          mt={10}
+          gap={10}
+        >
+          <Box m={"auto"} w={["xs", "md", "xl"]} h={[, "sm"]}>
             <Image
               w={"100%"}
               h={"100%"}
@@ -185,7 +209,7 @@ const Home = () => {
               src="https://images.unsplash.com/photo-1614690431089-afb0de81d184?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"
             />
           </Box>
-          <Box m={"auto"} w={["xs", "xl"]} h={[, "sm"]}>
+          <Box m={"auto"} w={["xs", "md", "xl"]} h={[, "sm"]}>
             <Image
               w={"100%"}
               h={"100%"}
