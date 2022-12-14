@@ -6,7 +6,12 @@ const mensController = express.Router();
 mensController.get("/", async (req, res) => {
   if (req.query.q) {
     try {
-      const prods = await MensModel.find({$or: [{category: {$regex: req.query.q}}, {title: {$regex: req.query.q}}]});
+      const prods = await MensModel.find({
+        $or: [
+          { category: { $regex: req.query.q } },
+          { title: { $regex: req.query.q } },
+        ],
+      });
       res.status(200).send(prods);
     } catch (err) {
       res.status(500).send({ message: "Please try again!" });
