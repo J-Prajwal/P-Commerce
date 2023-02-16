@@ -1,8 +1,8 @@
-import * as types from "./reg.actionTypes";
+import * as types from './reg.actionTypes';
 
 const initialState = {
   userData: [],
-  token: "",
+  token: '',
   isAuth: false,
   isLoading: false,
   isError: false,

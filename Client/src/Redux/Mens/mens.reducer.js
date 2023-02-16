@@ -1,4 +1,4 @@
-import * as types from "./mens.actionTypes";
+import * as types from './mens.actionTypes';
 
 const initialState = {
   mens: [],
@@ -32,23 +32,27 @@ export const reducer = (state = initialState, { type, payload }) => {
     }
     case types.SORT_PRODUCTS_BY_PRICE_ASC: {
       return {
-        ...state, mens: state.mens.sort((a, b) => a.cost - b.cost)
-      }
+        ...state,
+        mens: state.mens.sort((a, b) => a.cost - b.cost),
+      };
     }
     case types.SORT_PRODUCTS_BY_PRICE_DESC: {
       return {
-        ...state, mens: state.mens.sort((a, b) => b.cost - a.cost)
-      }
+        ...state,
+        mens: state.mens.sort((a, b) => b.cost - a.cost),
+      };
     }
     case types.SORT_PRODUCTS_BY_RATINGS_ASC: {
       return {
-        ...state, mens: state.mens.sort((a, b) => a.rating - b.rating)
-      }
+        ...state,
+        mens: state.mens.sort((a, b) => a.rating - b.rating),
+      };
     }
     case types.SORT_PRODUCTS_BY_RATINGS_DESC: {
       return {
-        ...state, mens: state.mens.sort((a, b) => b.rating - a.rating)
-      }
+        ...state,
+        mens: state.mens.sort((a, b) => b.rating - a.rating),
+      };
     }
     default: {
       return state;

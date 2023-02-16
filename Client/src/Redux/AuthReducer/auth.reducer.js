@@ -1,11 +1,11 @@
-import { getItem } from "../../Utils/localStorage";
-import * as types from "./auth.actionTypes";
+import { getItem } from '../../Utils/localStorage';
+import * as types from './auth.actionTypes';
 
 const initialState = {
-  username: getItem("username") || false,
+  username: getItem('username') || false,
   userData: [],
-  token: getItem("token") || "",
-  isAuth: getItem("token") ? true : false,
+  token: getItem('token') || '',
+  isAuth: getItem('token') ? true : false,
   isLoading: false,
   isError: false,
   loginSuccess: false,
@@ -38,7 +38,7 @@ export const reducer = (state = initialState, { type, payload }) => {
     case types.LOGOUT_USER: {
       return {
         ...state,
-        token: "",
+        token: '',
         isAuth: false,
       };
     }

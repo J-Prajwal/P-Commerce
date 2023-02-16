@@ -1,4 +1,4 @@
-import * as types from "./cart.actionTypes";
+import * as types from './cart.actionTypes';
 
 const init = {
   isLoading: false,

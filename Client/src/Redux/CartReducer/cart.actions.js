@@ -1,10 +1,10 @@
-import * as types from "./cart.actionTypes";
-import axios from "axios";
+import * as types from './cart.actionTypes';
+import axios from 'axios';
 
 export const getCartItems = () => (dispatch) => {
   dispatch({ type: types.GET_CART_ITEMS_LOADING });
   return axios
-    .get("http://localhost:8080/cart")
+    .get('http://localhost:8080/cart')
     .then((res) => {
       dispatch({ type: types.GET_CART_ITEMS_SUCCESS, payload: res.data });
     })
@@ -14,7 +14,7 @@ export const getCartItems = () => (dispatch) => {
 };
 
 export const addCartItems = (payload) => (dispatch) => {
-  return axios.post("http://localhost:8080/cart/new", payload).then((res) => {
+  return axios.post('http://localhost:8080/cart/new', payload).then((res) => {
     dispatch({ type: types.REMOVE_CART_ITEMS });
     return true;
   });
